@@ -1,0 +1,32 @@
+{% extends 'books/base.html' %}
+{% block body %}
+    <form method="POST" action="update/{{ books.id }}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="title">Titulo del libro</label>
+            <input type="text" class="form-control" name="book_title" value="{{ books.book_title }}"
+                   required="required"/>
+        </div>
+        <div class="form-group">
+            <label for="writer">Escritor</label>
+            <input type="text" class="form-control" name="writer" value="{{ books.writer }}" required="required"/>
+        </div>
+        <div class="form-group">
+            <label for="synopsis">Sinopsis</label>
+            <textarea class="form-control" name="synopsis" required>{{ books.synopsis }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="publisher">Editorial</label>
+            <input type="text" class="form-control" name="publisher" value="{{ books.publisher }}" required="required"/>
+        </div>
+        <div class="form-group">
+            <label for="publishDate">Fecha de publicacion</label>
+            <input type="date" class="form-control" name="publish_date" value="{{ books.publish_date|date:"Y-m-d" }}"
+                   required="required"/>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-edit"></span> Update
+            </button>
+        </div>
+    </form>
+{% endblock %}
